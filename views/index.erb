@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Braintree Hosted Fields Payments Example</title>
+		<script src="https://js.braintreegateway.com/js/braintree-2.24.1.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<script src="/bower_components/jquery/dist/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="/custom.css">
+
+	</head>
+	<body>
+		<div class="container">
+
+			<form class="col-md-6 col-md-offset-3" id="hostfieldform" action='/checkout' method='post'>
+				<div class="row">
+					
+						<h2>Braintree HostedFields Example Checkout </h2>
+					
+				</div>
+
+				<div class="row">
+					<div class="input-group">
+						<span class="input-group-addon" id="sizing-addon1">Card Number</span>
+							<div id="card-number" class="form-control"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-group">
+						<span class="input-group-addon" id="sizing-addon1">
+							Card Exp
+						</span>
+						<div id="card-exp" class="form-control"></div>
+						<span class="input-group-addon" id="sizing-addon1">
+							Card CVV
+						</span>
+						<div id="card-cvv" class="form-control"></div>
+					</div>				
+				</div>
+				<div class="row">
+					<div class="input-group">
+						<span class="input-group-addon" id="sizing-addon1">	Amount
+						</span>
+						<input id="amount" name="amount" type="number" placeholder="Amount" value="10">
+					</div>
+				</div>
+				<div>
+					
+				</div>
+				<div class="row">
+					<div class="input-group col-md-6">
+						<div id="paypal-container"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-group col-md-6">
+						<input type="submit" value="Submit Payment" class="btn-danger btn-lg">
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+		<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+		<script>
+		var client_token = "<%= @client_token %>";
+		braintree.setup(client_token, "custom", {
+			id: "hostfieldform",
+				paypal: {
+					container: "paypal-container",
+				},
+			hostedFields: {
+				number: {
+					selector: "#card-number"
+				},
+				cvv: {
+					selector: "#card-cvv"
+				},
+				expirationDate: {
+					selector: "#card-exp"
+				},
+				styles: {
+					"input": {
+						"font-size": "18pt",
+						"color": "#3A3A3A"
+					},
+					 ".number": {
+	              "font-family": "monospace"
+		            },
+		            ":focus": {
+		              "color": "blue"
+		            },
+		            ".valid": {
+		              "color": "green"
+		            },
+		            ".invalid": {
+		              "color": "red"
+		            },
+					onError: function(obj){
+							returnSomething(obj.code.message)
+
+					}
+				}
+			}
+		});
+			
+		</script>
+	</body>
+</html>

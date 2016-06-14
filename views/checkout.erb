@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>Braintree Hosted Fields Payments Example</title>
+	<script src="https://js.braintreegateway.com/js/braintree-2.24.1.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="<%= url("custom.css")%>">
+
+</head>
+<body>
+	<div class='container'>
+    <div class='row'>
+      <header>
+        <h1>Payment Success</h1>
+      </header>
+    </div>
+
+    <div class='row'>
+      <h2>Transaction Details</h2>
+      <h4>In this transaction, $<%= @amount %> was <%= @transaction.status %>.<h4>
+     
+      <p>Card ending in <%= @transaction.credit_card_details.expiration_date %> was charged successfully.</p>
+      <%= @transaction.inspect %>
+      
+     
+    </div>
+	<div class='row'>
+	      <h3>Customer</h3>
+	      <%= @cust %> was created.
+	</div>
+
+	<% if @transaction.customer_details.id %>
+     
+        <h5>Customer</h5>
+
+        <table cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+            
+              <th>first name</th>
+              <td><%= @transaction.customer_details.first_name %></td>
+            </tr>
+            <tr>
+              <th>last name</th>
+              <td><%= @transaction.customer_details.last_name %></td>
+            </tr>
+           
+            </tr>
+          </tbody>
+        </table>
+	
+    <% end %>
+   </div>
+</body>
+</html>
