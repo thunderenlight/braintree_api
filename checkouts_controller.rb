@@ -14,30 +14,7 @@ get '/client_token' do
 end
 
 post '/checkout' do 
-	cust = Braintree::Customer.create(
-		
-		)
-		if cust.success?
-		  puts cust.customer.id
-		  @cust = cust.customer.id
-		else
-		  p cust.errors
-		end
-	puts cust.customer.id
-	puts "*****"
-	@amount = params[:amount]
-	payment_method_nonce = params[:payment_method_nonce]
-# 	sale_result = Braintree::Transaction.sale(
-# 	  :amount => "100",
-# 	  :payment_method_nonce => fake-processor-declined-visa-nonce,
-# 	  :options => {
-# 	    :submit_for_settlement => true
-# 	  }
-# 	)
-
-# puts new_result = Braintree::TestTransaction.settle(sale_result.transaction.id)
-# puts new_result.success? == true
-# puts new_result.transaction.status == Braintree::Transaction::Status::Settled
+	
 
 	@result = Braintree::Transaction.sale(
 		amount: @amount,
