@@ -1,3 +1,3 @@
-require './app'
+require './checkouts_controller'
 
 run Application

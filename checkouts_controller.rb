@@ -14,7 +14,18 @@ get '/client_token' do
 end
 
 post '/checkout' do 
-	
+	@amount = params[:amount]
+	payment_method_nonce = params[:payment_method_nonce]
+
+	cust = Braintree::Customer.create(
+		
+		)
+		if cust.success?
+		  puts cust.customer.id
+		  @cust = cust.customer.id
+		else
+		  cust.errors
+		end
 
 	@result = Braintree::Transaction.sale(
 		amount: @amount,
