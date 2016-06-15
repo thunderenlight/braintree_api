@@ -11,38 +11,41 @@
 	<div class='container'>
     <div class='row'>
       <header>
-        <h1>Payment Success</h1>
+         <h1 class="text-center">Payment Success</h1>
       </header>
     </div>
 
     <div class='row'>
-      <h2>Transaction Details</h2>
+      <h2>Transaction Details:</h2>
       <h4>In this transaction, $<%= @amount %> was <%= @transaction.status %>.<h4>
      
       <p>Card ending in <%= @transaction.credit_card_details.expiration_date %> was charged successfully.</p>
-      <%= @transaction.inspect %>
       
      
     </div>
+     <div class='row'>
+      <h2>Braintree::Transaction</h2>
+      <%= @transaction.ai(html: true, indent: 2, plain: true) %>
+    </div>
 	<div class='row'>
-	      <h3>Customer</h3>
-	      <%= @cust %> was created.
+	      <h3>Customer information</h3>
+	      <p><%= @cust %> id was created.</p>
 	</div>
 
 	<% if @transaction.customer_details.id %>
      
-        <h5>Customer</h5>
+        <h5>Customer example name </h5>
 
         <table cellpadding="0" cellspacing="0">
           <tbody>
             <tr>
             
-              <th>first name</th>
-              <td><%= @transaction.customer_details.first_name %></td>
+              <th>first name  :   </th>
+              <td>  <%= @transaction.customer_details.first_name %></td>
             </tr>
             <tr>
-              <th>last name</th>
-              <td><%= @transaction.customer_details.last_name %></td>
+              <th>last name  :   </th>
+              <td> <%= @transaction.customer_details.last_name %></td>
             </tr>
            
             </tr>

@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'braintree'
- 
+require 'awesome_print'
+
 
 Braintree::Configuration.environment = :sandbox
 Braintree::Configuration.merchant_id = '23nd25g4kn7gnqbb'
@@ -18,7 +19,8 @@ post '/checkout' do
 	payment_method_nonce = params[:payment_method_nonce]
 
 	cust = Braintree::Customer.create(
-		
+		first_name: "John",
+		last_name: "Doe"
 		)
 		if cust.success?
 		  puts cust.customer.id
