@@ -3,13 +3,13 @@ require 'braintree'
 require 'awesome_print'
 
 
-Braintree::Configuration.environment = :sandbox
-Braintree::Configuration.merchant_id = '23nd25g4kn7gnqbb'
-Braintree::Configuration.public_key = '8552x2ym5bvhsycp'
-Braintree::Configuration.private_key = '17f3279171d4fd90ee9cd5256be17abf'
+Braintree::Configuration.environment = :sandbox #ENV["BT_ENVIRONMENT"]
+Braintree::Configuration.merchant_id =  '23nd25g4kn7gnqbb'#ENV["BT_MERCHANT_ID"]
+Braintree::Configuration.public_key  =  '8552x2ym5bvhsycp'#ENV["BT_PUBLIC_KEY"]
+Braintree::Configuration.private_key =  '17f3279171d4fd90ee9cd5256be17abf'#ENV["BT_PRIVATE_KEY"]
 
 
-get '/client_token' do 
+get '/' do 
 	@client_token = Braintree::ClientToken.generate
 	erb :index
 end
@@ -44,3 +44,7 @@ post '/checkout' do
 		error_messages = @result.errors.map { |error| "Error: #{error.code}: #{error.message}" } 
 	end	 
 end
+
+data = 
+"Orlando:Jan 23.3, Feb 33, Mar 22, Apr 44, May 20, Jun 28, Jul 18, Aug 21, Sep 12, Oct 21.8 Nov 19, Dec 22.9" + '\n' +
+"London:Jan 43.3, Feb 33, Mar 44, Apr 44, May 40, Jun 48, Jul 18, Aug 41, Sep 14, Oct 41.8 Nov 19, Dec 42.9"
