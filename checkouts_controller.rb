@@ -3,10 +3,10 @@ require 'braintree'
 require 'awesome_print'
 
 
-Braintree::Configuration.environment = :sandbox #ENV["BT_ENVIRONMENT"]
-Braintree::Configuration.merchant_id =  '23nd25g4kn7gnqbb'#ENV["BT_MERCHANT_ID"]
-Braintree::Configuration.public_key  =  '8552x2ym5bvhsycp'#ENV["BT_PUBLIC_KEY"]
-Braintree::Configuration.private_key =  '17f3279171d4fd90ee9cd5256be17abf'#ENV["BT_PRIVATE_KEY"]
+Braintree::Configuration.environment =  ENV["BT_ENVIRONMENT"]
+Braintree::Configuration.merchant_id =  ENV["BT_MERCHANT_ID"]
+Braintree::Configuration.public_key  =  ENV["BT_PUBLIC_KEY"]
+Braintree::Configuration.private_key =  ENV["BT_PRIVATE_KEY"]
 
 
 get '/' do 
